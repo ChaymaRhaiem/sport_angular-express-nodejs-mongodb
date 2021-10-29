@@ -1,0 +1,39 @@
+<div class="container">
+    <table class="table">
+
+        <tr>
+            <th>Index</th>
+            <th>score One </th>
+            <th>score two</th>
+            <th>team one </th>
+            <th> team two</th>
+            <th> actions</th>
+        </tr>
+
+        <tr *ngFor="let m of matches; let i=index">
+            <td>{{i}}</td>
+            <td>
+                <span [ngClass]="{'green-class': compare(m.scoreOne,m.scoreTwo)[0]=='win','red-class': compare(m.scoreOne,m.scoreTwo)[0]=='loss','blue-class': compare(m.scoreOne,m.scoreTwo)[0]=='draw'}">{{m.scoreOne}}</span>
+                <span> {{compare(m.scoreOne,m.scoreTwo)[0]}}</span>
+
+            </td>
+            <td>
+                <span [ngClass]="{'green-class': compare(m.scoreTwo,m.scoreOne)[0]=='win','red-class': compare(m.scoreTwo,m.scoreOne)[0]=='loss','blue-class': compare(m.scoreTwo,m.scoreOne)[0]=='draw'}">{{m.scoreTwo}}</span>
+                <span> {{compare(m.scoreTwo,m.scoreOne)[0]}}</span>
+            </td>
+            <td>{{m.teamOne}}</td>
+            <td>{{m.teamTwo}}</td>
+            
+
+                <button class="btn btn-info" (click)="goTodisplay(m._id)">Display</button>
+                <button class="btn btn-warning" (click)="goToEdit(m._id)">Edit</button>
+
+                <button class="btn btn-danger" (click)="delete(m._id)" > Delete  </button> <!--splice uses index , server uses id || mongodb (_id) -->
+
+        </tr>
+
+    </table>
+
+
+
+</div>
